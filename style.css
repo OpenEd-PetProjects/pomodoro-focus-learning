@@ -1,0 +1,4 @@
+body { font-family: system-ui, sans-serif; background: #f4f0eb; color: #262626; }
+main { max-width: 30rem; margin: 12vh auto; padding: 2rem; text-align: center; }
+#time { font-size: 4rem; font-variant-numeric: tabular-nums; margin: 1rem; }
+button { font: inherit; padding: .7rem 1rem; margin: .25rem; cursor: pointer; }

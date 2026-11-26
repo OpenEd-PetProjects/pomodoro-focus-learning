@@ -1,5 +1,5 @@
-# Pet project
+# Таймер Pomodoro
 
-Record what you want to build and how you will know it works. Use the project brief in Loom to choose the first small task.
+Откройте `index.html` в браузере. Запустите таймер кнопкой «Запустить» и при необходимости остановите его. Работа длится 25 минут, отдых — 5 минут; интервалы чередуются автоматически.
 
-Update the `test` recipe in `Justfile` to run your project tests. The initial `just test` fails until you add a test command. GitHub Actions runs the same recipe on pushes and pull requests.
+Для запуска тестов установите Node.js и выполните `just test` (или `node --test timer.test.js`).
