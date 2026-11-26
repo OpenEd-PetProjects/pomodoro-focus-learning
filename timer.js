@@ -1,7 +1,7 @@
 function createTimer(render, clock = globalThis) {
   const durations = { work: 25 * 60, rest: 5 * 60 };
   let mode = 'work';
-  let remaining = durations[mode];
+  let remaining = durations[mode] * 1000;
   let interval = null;
   let deadline;
 
@@ -11,14 +11,14 @@ function createTimer(render, clock = globalThis) {
       mode = mode === 'work' ? 'rest' : 'work';
       deadline += durations[mode] * 1000;
     }
-    remaining = Math.ceil((deadline - now) / 1000);
-    render(mode, remaining);
+    remaining = deadline - now;
+    render(mode, Math.ceil(remaining / 1000));
   }
 
   return {
     start() {
       if (interval !== null) return;
-      deadline = clock.Date.now() + remaining * 1000;
+      deadline = clock.Date.now() + remaining;
       interval = clock.setInterval(update, 250);
     },
     stop() {

@@ -33,3 +33,27 @@ test('запуск, остановка и автоматическое пере�
   timer.stop();
   assert.equal(running, 0);
 });
+
+test('пауза сохраняет остаток, включая доли секунды', () => {
+  let now = 0;
+  let callback;
+  let display;
+  const clock = {
+    Date: { now: () => now },
+    setInterval(fn) { callback = fn; return 1; },
+    clearInterval() {}
+  };
+  const timer = createTimer((mode, seconds) => { display = [mode, seconds]; }, clock);
+  timer.start();
+  now = 10_500;
+  timer.stop();
+  assert.deepEqual(display, ['work', 1490]);
+  now += 60_000;
+  timer.start();
+  now += 1_489_499;
+  callback();
+  assert.deepEqual(display, ['work', 1]);
+  now++;
+  callback();
+  assert.deepEqual(display, ['rest', 300]);
+});
